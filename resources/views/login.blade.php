@@ -12,29 +12,32 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css">
         <link rel="stylesheet" href="{{ voyager_asset('css/rtl.css') }}">
     @endif
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
     <style>
-        body {
-            background-image:url('{{ Voyager::image( Voyager::setting("admin.bg_image"), voyager_asset("images/bg.jpg") ) }}');
-            background-color: {{ Voyager::setting("admin.bg_color", "#FFFFFF" ) }};
-        }
-        body.login .login-sidebar {
-            border-top:5px solid {{ config('voyager.primary_color','#22A7F0') }};
-        }
-        @media (max-width: 767px) {
-            body.login .login-sidebar {
-                border-top:0px !important;
-                border-left:5px solid {{ config('voyager.primary_color','#22A7F0') }};
-            }
-        }
-        body.login .form-group-default.focused{
-            border-color:{{ config('voyager.primary_color','#22A7F0') }};
-        }
-        .login-button, .bar:before, .bar:after{
-            background:{{ config('voyager.primary_color','#22A7F0') }};
-        }
-        .remember-me-text{
-            padding:0 5px;
-        }
+     body {
+         background-image:url('{{ Voyager::image( Voyager::setting("admin.bg_image"), voyager_asset("images/bg.jpg") ) }}');
+         background-color: {{ Voyager::setting("admin.bg_color", "#FFFFFF" ) }};
+     }
+     body.login .login-sidebar {
+         border-top:5px solid {{ config('voyager.primary_color','#22A7F0') }};
+     }
+     @media (max-width: 767px) {
+         body.login .login-sidebar {
+             border-top:0px !important;
+             border-left:5px solid {{ config('voyager.primary_color','#22A7F0') }};
+         }
+     }
+     body.login .form-group-default.focused{
+         border-color:{{ config('voyager.primary_color','#22A7F0') }};
+     }
+     .login-button, .bar:before, .bar:after{
+         background:{{ config('voyager.primary_color','#22A7F0') }};
+     }
+     .remember-me-text{
+         padding:0 5px;
+     }
     </style>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
@@ -80,7 +83,9 @@
                     <div class="form-group form-group-default" id="passwordGroup">
                         <label>{{ __('voyager::generic.password') }}</label>
                         <div class="controls">
-                            <input type="password" name="password" placeholder="{{ __('voyager::generic.password') }}" class="form-control" required>
+                            <input type="password" id="password" name="password" placeholder="{{ __('voyager::generic.password') }}" class="form-control" required>
+                            <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password" style="float: right; margin-left: -25px; margin-top: -25px; position: relative; z-index: 2;"></span>
+                            </input>
                         </div>
                     </div>
 
@@ -146,5 +151,12 @@
     });
 
 </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript" src="{{ voyager_asset('js/custom.js') }}"></script>
+
+@if(!empty(config('voyager.additional_js')))<!-- Additional Javascript -->
+    @foreach(config('voyager.additional_js') as $js)<script type="text/javascript" src="{{ asset($js) }}"></script>@endforeach
+@endif
 </body>
 </html>
