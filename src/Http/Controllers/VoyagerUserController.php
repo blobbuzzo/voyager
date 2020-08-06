@@ -12,7 +12,7 @@ class VoyagerUserController extends VoyagerBaseController
     {
         $route = '';
         $dataType = Voyager::model('DataType')->where('model_name', Auth::guard(app('VoyagerGuard'))->getProvider()->getModel())->first();
-        if (!$dataType && app('VoyagerGuard') == 'web') {
+        if (!$dataType && app('VoyagerGuard') == 'voyager') {
             $route = route('voyager.users.edit', Auth::user()->getKey());
         } elseif ($dataType) {
             $route = route('voyager.'.$dataType->slug.'.edit', Auth::user()->getKey());
